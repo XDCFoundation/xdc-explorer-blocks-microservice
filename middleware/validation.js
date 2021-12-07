@@ -8,7 +8,22 @@ module.exports = {
       password: yup.string().min(8).required()
     })
     await validate(schema, req.body, res, next)
+  },
+
+  validateLatestBlocks: async (req, res, next) => {
+    const schema = yup.object().shape({
+      skip: yup.string().required(),
+      limit: yup.string().required()
+    })
+    await validate(schema, req.query, res, next)
+  },
+  validateBlockNumber: async (req, res, next) => {
+    const schema = yup.object().shape({
+      blockNumber: yup.string().required(),
+    })
+    await validate(schema, req.params, res, next)
   }
+
 }
 
 const validate = async (schema, reqData, res, next) => {
