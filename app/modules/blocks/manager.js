@@ -5,7 +5,7 @@ import {httpConstants} from "../../common/constants";
 export default class BlocksManager {
     async getLatestBlocks(req) {
         Utils.lhtLog("BlocksManager:getLatestBlocks", "req", {req}, '', httpConstants.LOG_LEVEL_TYPE.INFO);
-        return await BlockModel.getBlockList({}, {},parseInt(req.skip),parseInt(req.limit), {_id: -1});
+        return await BlockModel.getBlockList({}, {},parseInt(req.skip),parseInt(req.limit), {number: -1});
     }
 
     async getTotalBlocks() {
