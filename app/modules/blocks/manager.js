@@ -4,8 +4,9 @@ import {httpConstants} from "../../common/constants";
 
 export default class BlocksManager {
     async getLatestBlocks(req) {
+        let sortKey = parseInt(req.sortKey ? req.sortKey : -1);
         Utils.lhtLog("BlocksManager:getLatestBlocks", "req", {req}, '', httpConstants.LOG_LEVEL_TYPE.INFO);
-        return await BlockModel.getBlockList({}, {},parseInt(req.skip),parseInt(req.limit), {number: -1});
+        return await BlockModel.getBlockList({}, {},parseInt(req.skip),parseInt(req.limit), {number: Number(sortKey)});
     }
 
     async getTotalBlocks() {
